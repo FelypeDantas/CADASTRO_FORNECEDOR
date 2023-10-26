@@ -446,15 +446,15 @@
        INICIO.
 
       *-------------ABERTURA DO ARQUIVO -------------------
-       R0.    OPEN I-O ARQCLI
+       R0.    OPEN I-O ARQFOR
            IF ST-ERRO NOT = "00"
 
 
             IF ST-ERRO = "30"
-              OPEN OUTPUT ARQCLI
+              OPEN OUTPUT ARQFOR
               MOVE "CRIANDO ARQUIVO CADASTRO DE FUNCIONARIOS " TO MENS
               PERFORM ROT-MENS THRU ROT-MENS-FIM
-              CLOSE ARQCLI
+              CLOSE ARQFOR
               GO TO INICIO
             ELSE
               IF ST-ERRO = "95"
@@ -504,12 +504,12 @@
               GO TO R7.
        R2A.
            IF FOR-TIPOFORNECEDOR = "f" OR "F"
-              MOVE "Pessoa Fisica" TO DCLI-TIPOCLIENTE
-              MOVE "F" TO CLI-TIPOCLIENTE
+              MOVE "Pessoa Fisica" TO DFOR-TIPOFORNECEDOR
+              MOVE "F" TO FOR-TIPOFORNECEDOR
            ELSE
             IF FOR-TIPOFORNECEDOR = "J" OR "j"
-              MOVE "Pessoa Juridica" TO DCLI-TIPOCLIENTE
-              MOVE "J" TO CLI-TIPOCLIENTE
+              MOVE "Pessoa Juridica" TO DFOR-TIPOFORNECEDOR
+              MOVE "J" TO FOR-TIPOFORNECEDOR
 
              ELSE
               MOVE "F - Pessoa Fisica : J - Pessoa Juridica" TO MENS
@@ -528,11 +528,11 @@
            IF W-ACT = 01
                   CLOSE ARQFOR
                   STOP RUN.
-           IF CLI-CODIGO = SPACES
+           IF FOR-CODIGO = SPACES
               MOVE "*** CODIGO NAO PODE FICAR EM BRANCO ***" TO MENS
               PERFORM ROT-MENS THRU ROT-MENS-FIM
               GO TO R3.
-       LER-ARQCLI.
+       LER-ARQFOR.
            READ ARQFOR
            IF ST-ERRO NOT = "23"
               IF ST-ERRO = "00"
@@ -555,7 +555,7 @@
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R3.
-           IF CLI-CPF = SPACES
+           IF FOR-CPF = SPACES
               MOVE "CPF NAO PODE FICAR EM BRANCO" TO MENS
               PERFORM ROT-MENS THRU ROT-MENS-FIM
               GO TO R4.
@@ -565,7 +565,7 @@
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R3.
-           IF CLI-NOME = SPACES
+           IF FOR-NOME = SPACES
               MOVE "NOME NAO PODE FICAR EM BRANCO" TO MENS
               PERFORM ROT-MENS THRU ROT-MENS-FIM
               GO TO R5.
@@ -574,7 +574,7 @@
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R4.
-           IF CLI-APELIDO = SPACES
+           IF FOR-APELIDO = SPACES
               MOVE " *** APELIDO NAO PODE FICAR EM BRANCO ***" TO MENS
               PERFORM ROT-MENS THRU ROT-MENS-FIM
               GO TO R5.
@@ -677,12 +677,12 @@
                       PERFORM ROT-MENS THRU ROT-MENS-FIM
                       GO TO R1.
                 IF ST-ERRO = "22"
-                  MOVE "* CLIENTE JA EXISTE,DADOS NAO GRAVADOS *" TO
+                  MOVE "* FORNECEDOR JA EXISTE,DADOS NAO GRAVADOS *" TO
                   MENS
                   PERFORM ROT-MENS THRU ROT-MENS-FIM
                   GO TO R1
                 ELSE
-                      MOVE "ERRO NA GRAVACAO DO ARQUIVO DE PRODUTO"
+                      MOVE "ERRO NA GRAVACAO DO ARQUIVO DE FORNECEDOR"
                                                        TO MENS
                       PERFORM ROT-MENS THRU ROT-MENS-FIM
                       GO TO ROT-FIM.
@@ -724,7 +724,7 @@
                    PERFORM ROT-MENS THRU ROT-MENS-FIM
                    GO TO EXC-OPC.
        EXC-DL1.
-                DELETE ARQCLI RECORD
+                DELETE ARQFOR RECORD
                 IF ST-ERRO = "00"
                    MOVE "*** REGISTRO FUNCIONARIO EXCLUIDO ***" TO MENS
                    PERFORM ROT-MENS THRU ROT-MENS-FIM
@@ -748,7 +748,7 @@
                    PERFORM ROT-MENS THRU ROT-MENS-FIM
                    GO TO ALT-OPC.
        ALT-RW1.
-                REWRITE REGCLI
+                REWRITE REGFOR
                 IF ST-ERRO = "00" OR "02"
                    MOVE "*** REGISTRO ALTERADO ***" TO MENS
                    PERFORM ROT-MENS THRU ROT-MENS-FIM
