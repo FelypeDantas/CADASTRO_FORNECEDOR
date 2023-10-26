@@ -586,7 +586,7 @@
                    DISPLAY TELANOVA
                    GO TO R7.
            IF CLI-CEP = 0
-                 MOVE "*** CEP N√O INFORMADO  ***" TO MENS
+                 MOVE "*** CEP N√ÉO INFORMADO  ***" TO MENS
                  PERFORM ROT-MENS THRU ROT-MENS-FIM
                  GO TO R8.
        R7A.
@@ -761,7 +761,7 @@
 
       *-------------------------------------------------------------------------------------------
        ROT-FIM.
-           CLOSE ARQCLI ARQCEP.
+           CLOSE ARQFOR ARQCEP.
            STOP RUN.
       *--------------------------------------------------------------
       *---------[ ROTINA DE MENSAGEM ]---------------------
@@ -781,9 +781,9 @@
        FIM-ROT-TEMPO.
 
       *    FILE STATUS
-      *    00 = OPERA«√O REALIZADO COM SUCESSO
-      *    22 = REGISTRO J¡ CADASTRADO
-      *    23 = REGISTRO N√O ENCONTRADO
-      *    30 = ARQUIVO N√O ENCONTRADO
+      *    00 = OPERA√á√ÉO REALIZADO COM SUCESSO
+      *    22 = REGISTRO J√Å CADASTRADO
+      *    23 = REGISTRO N√ÉO ENCONTRADO
+      *    30 = ARQUIVO N√ÉO ENCONTRADO
       *    95 = ISAM NAO CARREGADO
       *    10 = FIM DA LEITURA ARQUIVO SEQUENCIAL
