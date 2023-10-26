@@ -462,7 +462,7 @@
                 PERFORM ROT-MENS THRU ROT-MENS-FIM
                 GO TO ROT-FIM
               ELSE
-                MOVE "ERRO NA ABERTURA DO ARQUIVO CDAMIGOS" TO MENS
+                MOVE "ERRO NA ABERTURA DO ARQUIVO FORNECEDOR" TO MENS
                 PERFORM ROT-MENS THRU ROT-MENS-FIM
                 GO TO ROT-FIM.
 
@@ -483,14 +483,14 @@
       *------------- INICIALIZACAO DAS VARIAVEIS------------
        R1.
            MOVE SPACES TO
-           DCLI-TIPOCLIENTE DCLI-ESTADO CLI-TIPOCLIENTE
-           CLI-NOME CLI-APELIDO CLI-LOGRADOURO CLI-NUMERO
-           CLI-COMPLEMENTO CLI-BAIRRO CLI-CIDADE CLI-ESTADO
-           CLI-EMAIL CLI-CONTATO.
+           DFOR-TIPOCLIENTE DFOR-ESTADO FOR-TIPOCLIENTE
+           FOR-NOME FOR-APELIDO FOR-LOGRADOURO FOR-NUMERO
+           FOR-COMPLEMENTO FOR-BAIRRO FOR-CIDADE FOR-ESTADO
+           FOR-EMAIL FOR-CONTATO.
            MOVE SPACES TO CEP-LOGRA CEP-BAIRRO CEP-CIDADE CEP-UF
 
-           MOVE ZEROS TO CLI-CODIGO CLI-CPF CLI-CNPJ CLI-CEP
-           CLI-TELEFONE
+           MOVE ZEROS TO FOR-CODIGO FOR-CPF FOR-CNPJ FOR-CEP
+           FOR-TELEFONE
       *-------------VISUALIZACAO DA TELA ------------------
 
            DISPLAY TELANOVA.
@@ -498,16 +498,16 @@
 
        R2.
 
-           ACCEPT TCLI-TIPOCLIENTE
+           ACCEPT TFOR-TIPOCLIENTE
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R7.
        R2A.
-           IF CLI-TIPOCLIENTE = "f" OR "F"
+           IF FOR-TIPOFORNECEDOR = "f" OR "F"
               MOVE "Pessoa Fisica" TO DCLI-TIPOCLIENTE
               MOVE "F" TO CLI-TIPOCLIENTE
            ELSE
-            IF CLI-TIPOCLIENTE = "J" OR "j"
+            IF FOR-TIPOFORNECEDOR = "J" OR "j"
               MOVE "Pessoa Juridica" TO DCLI-TIPOCLIENTE
               MOVE "J" TO CLI-TIPOCLIENTE
 
@@ -515,7 +515,7 @@
               MOVE "F - Pessoa Fisica : J - Pessoa Juridica" TO MENS
                 PERFORM ROT-MENS THRU ROT-MENS-FIM
                 GO TO R2.
-           DISPLAY TDTIPOCLIENTE.
+           DISPLAY TDTIPOFORNECEDOR.
            DISPLAY TELALIMPAR.
            DISPLAY TELANOVA.
 
@@ -523,35 +523,35 @@
 
 
        R3.
-           ACCEPT TCLI-CODIGO.
+           ACCEPT TFOR-CODIGO.
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
-                  CLOSE ARQCLI
+                  CLOSE ARQFOR
                   STOP RUN.
            IF CLI-CODIGO = SPACES
               MOVE "*** CODIGO NAO PODE FICAR EM BRANCO ***" TO MENS
               PERFORM ROT-MENS THRU ROT-MENS-FIM
               GO TO R3.
        LER-ARQCLI.
-           READ ARQCLI
+           READ ARQFOR
            IF ST-ERRO NOT = "23"
               IF ST-ERRO = "00"
                 PERFORM R7A
 
                 DISPLAY TELANOVA
-                MOVE "*** CLIENTE JA CADASTRAD0 ***" TO MENS
+                MOVE "*** FORNECEDOR JA CADASTRAD0 ***" TO MENS
                 PERFORM ROT-MENS THRU ROT-MENS-FIM
                 GO TO ACE-001
              ELSE
-                MOVE "ERRO NA LEITURA ARQUIVO CADAMIGO" TO MENS
+                MOVE "ERRO NA LEITURA ARQUIVO FORNECEDOR" TO MENS
                 PERFORM ROT-MENS THRU ROT-MENS-FIM
                 GO TO ROT-FIM
            ELSE
-                MOVE "*** CLIENTE NAO CADASTRAD0 ***" TO MENS
+                MOVE "*** FORNECEDOR NAO CADASTRAD0 ***" TO MENS
                 PERFORM ROT-MENS THRU ROT-MENS-FIM.
 
        R4.
-           ACCEPT TCLI-CPF.
+           ACCEPT TFOR-CPF.
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R3.
@@ -561,7 +561,7 @@
               GO TO R4.
 
        R5.
-           ACCEPT TCLI-NOME.
+           ACCEPT TFOR-NOME.
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R3.
@@ -570,7 +570,7 @@
               PERFORM ROT-MENS THRU ROT-MENS-FIM
               GO TO R5.
        R6.
-           ACCEPT TCLI-APELIDO.
+           ACCEPT TFOR-APELIDO.
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R4.
@@ -580,17 +580,17 @@
               GO TO R5.
 
        R7.
-           ACCEPT TCLI-CEP
+           ACCEPT TFOR-CEP
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
                    DISPLAY TELANOVA
                    GO TO R7.
-           IF CLI-CEP = 0
+           IF FOR-CEP = 0
                  MOVE "*** CEP NÃO INFORMADO  ***" TO MENS
                  PERFORM ROT-MENS THRU ROT-MENS-FIM
                  GO TO R8.
        R7A.
-           MOVE CLI-CEP TO CEP-NUMCEP.
+           MOVE FOR-CEP TO CEP-NUMCEP.
            READ ARQCEP
            IF ST-ERRO NOT = "00"
                IF ST-ERRO = "23"
@@ -608,48 +608,48 @@
 
 
        R8.
-           ACCEPT TCLI-NUMERO.
+           ACCEPT TFOR-NUMERO.
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R7.
-           IF CLI-NUMERO = SPACES
+           IF FOR-NUMERO = SPACES
               MOVE " *** NUMERO NAO PODE FICAR EM BRANCO ***" TO MENS
               PERFORM ROT-MENS THRU ROT-MENS-FIM
               GO TO R8.
        R9.
-           ACCEPT TCLI-COMPLEMENTO.
+           ACCEPT TFOR-COMPLEMENTO.
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R7.
-           IF CLI-COMPLEMENTO = SPACES
+           IF FOR-COMPLEMENTO = SPACES
             MOVE " *** COMPLEMENTO NAO PODE FICAR EM BRANCO ***" TO MENS
               PERFORM ROT-MENS THRU ROT-MENS-FIM
               GO TO R9.
 
        R10.
-           ACCEPT TCLI-TELEFONE.
+           ACCEPT TFOR-TELEFONE.
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R9.
-           IF CLI-TELEFONE = SPACES
+           IF FOR-TELEFONE = SPACES
             MOVE " *** TELEFONE NAO PODE FICAR EM BRANCO ***" TO MENS
               PERFORM ROT-MENS THRU ROT-MENS-FIM
               GO TO R10.
        R11.
-           ACCEPT TCLI-EMAIL.
+           ACCEPT TFOR-EMAIL.
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R10.
-           IF CLI-EMAIL = SPACES
+           IF FOR-EMAIL = SPACES
             MOVE " *** TELEFONE NAO PODE FICAR EM BRANCO ***" TO MENS
               PERFORM ROT-MENS THRU ROT-MENS-FIM
               GO TO R11.
        R12.
-           ACCEPT TCLI-CONTATO.
+           ACCEPT TFOR-CONTATO.
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R11.
-           IF CLI-CONTATO = SPACES
+           IF FOR-CONTATO = SPACES
             MOVE " *** CONTATO NAO PODE FICAR EM BRANCO ***" TO MENS
               PERFORM ROT-MENS THRU ROT-MENS-FIM
               GO TO R12.
@@ -671,7 +671,7 @@
                    PERFORM ROT-MENS THRU ROT-MENS-FIM
                    GO TO INC-OPC.
        INC-WR1.
-                WRITE REGCLI
+                WRITE REGFOR
                 IF ST-ERRO = "00" OR "02"
                       MOVE "*** DADOS GRAVADOS *** " TO MENS
                       PERFORM ROT-MENS THRU ROT-MENS-FIM
