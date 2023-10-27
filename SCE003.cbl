@@ -33,7 +33,7 @@
        FILE SECTION.
        FD ARQFOR
                LABEL RECORD IS STANDARD
-               VALUE OF FILE-ID IS "ARQCLI.DAT".
+               VALUE OF FILE-ID IS "ARQFOR.DAT".
        01 REGFOR.
           03 CADASTRO.
             05 FOR-CODIGO            PIC 9(06).
