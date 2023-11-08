@@ -158,10 +158,10 @@
            05  TFOR-APELIDO
                LINE 07  COLUMN 32  PIC X(30)
                USING  FOR-APELIDO.
-           05  TCLI-CEP
+           05  TFOR-CEP
                LINE 09  COLUMN 13  PIC 99999.999
                USING  FOR-CEP.
-           05  TCLI-LOGRADOURO
+           05  TFOR-LOGRADOURO
                LINE 09  COLUMN 52  PIC X(24)
                USING  CEP-LOGRA.
            05  TFOR-NUMERO
