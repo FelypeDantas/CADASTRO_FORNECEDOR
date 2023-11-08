@@ -1,11 +1,11 @@
-       IDENTIFICATION DIVISION.
+     IDENTIFICATION DIVISION.
        PROGRAM-ID. SCE003.
       *AUTHOR. FELYPE DANTAS DOS SANTOS.
-      *-----------------------------------------------------------------
-      *************************
-      *     CADASTRO DE FORNECEDOR*
-      **************************
-        ENVIRONMENT DIVISION.
+      ******************************
+      * CADASTRO DE FORNECEDOR     *
+      ******************************
+      *----------------------------------------------------------------
+       ENVIRONMENT DIVISION.
        CONFIGURATION SECTION.
        SPECIAL-NAMES.
              DECIMAL-POINT IS COMMA.
@@ -37,7 +37,7 @@
        01 REGFOR.
           03 CADASTRO.
             05 FOR-CODIGO            PIC 9(06).
-          03 FOR-TIPOFORNECEDOR      PIC X(01).
+          03 FOR-TIPOCLIENTE         PIC X(01).
           03 FOR-CPF                 PIC 9(11).
           03 FOR-CNPJ                PIC 9(14).
           03 FOR-NOME                PIC X(30).
@@ -73,8 +73,8 @@
        01 ST-ERRO       PIC X(02) VALUE "00".
 
 
-       01 DCLI-ESTADO            PIC X(15) VALUE SPACES.
-       01 DCLI-TIPOCLIENTE       PIC X(20) VALUE SPACES.
+       01 DFOR-ESTADO            PIC X(15) VALUE SPACES.
+       01 DFOR-TIPOCLIENTE       PIC X(20) VALUE SPACES.
 
        01 W-CONT        PIC 9(06) VALUE ZEROS.
        01 MENS          PIC X(50) VALUE SPACES.
@@ -85,67 +85,106 @@
        SCREEN SECTION.
        01  TELANOVA.
         05  LINE 01  COLUMN 01
-               VALUE  "                           CADASTRO DE F".
+               VALUE  "|-Cadastro de C".
            05  LINE 01  COLUMN 41
-               VALUE  "ORNECEDOR ".
+               VALUE  "liente -|".
+           05  LINE 02  COLUMN 01
+               VALUE  "|".
+           05  LINE 02  COLUMN 41
+               VALUE  "                                       |".
            05  LINE 03  COLUMN 01
-               VALUE  " -----------------------------DADOS EMPR".
-           05  LINE 03  COLUMN 41
-               VALUE  "ESARIAIS --------------------------------".
+               VALUE  "|Dados Pessoais|".
+
            05  LINE 04  COLUMN 01
-               VALUE  "   Informe o Tipo de fornecedor :  -".
+               VALUE  "|  Informe o Tipo de Cliente :  -".
            05  LINE 04  COLUMN 41
-               VALUE  "              Codigo:                   ".
+               VALUE  "              Codigo:                  |".
            05  LINE 05  COLUMN 01
-               VALUE  "   CPF/CNPJ                  :".
+               VALUE  "|  CPF/CNPJ                  :".
+           05  LINE 05  COLUMN 41
+               VALUE  "                                       |".
            05  LINE 06  COLUMN 01
-               VALUE  "   Nome/Razao Social         :".
+               VALUE  "|  Nome/Razao Social         :".
+           05  LINE 06  COLUMN 41
+               VALUE  "                                       |".
            05  LINE 07  COLUMN 01
-               VALUE  "   Apelido                   :".
+               VALUE  "|  Apelido                   :".
+           05  LINE 07  COLUMN 41
+               VALUE  "                                       |".
            05  LINE 08  COLUMN 01
-               VALUE  "----------------------------------ENDERE".
+               VALUE  "|Endere".
            05  LINE 08  COLUMN 41
-               VALUE  "CO--------------------------------------".
+               VALUE  "co|".
            05  LINE 09  COLUMN 01
-               VALUE  "   CEP    :                           Lo".
+               VALUE  "|  CEP    :                           Lo".
            05  LINE 09  COLUMN 41
-               VALUE  "gradouro  :                             ".
+               VALUE  "gradouro  :                            |".
            05  LINE 10  COLUMN 01
-               VALUE  "   Numero :                           Co".
+               VALUE  "|  Numero :                           Co".
            05  LINE 10  COLUMN 41
-               VALUE  "mplemento :                             ".
+               VALUE  "mplemento :                            |".
            05  LINE 11  COLUMN 01
-               VALUE  "   Bairro :".
+               VALUE  "|  Bairro :".
+           05  LINE 11  COLUMN 41
+               VALUE  "                                       |".
            05  LINE 12  COLUMN 01
-               VALUE  "   Cidade :                           Es".
+               VALUE  "|  Cidade :                           Es".
            05  LINE 12  COLUMN 41
-               VALUE  "tado      :   -                         ".
+               VALUE  "tado      :   -                        |".
            05  LINE 13  COLUMN 01
-               VALUE  "----------------------------------CONTAT".
+               VALUE  "|Contat".
            05  LINE 13  COLUMN 41
-               VALUE  "O---------------------------------------".
+               VALUE  "o|".
            05  LINE 14  COLUMN 01
-               VALUE  "   Telefone :                         E-".
+               VALUE  "|  Telefone :                         E-".
            05  LINE 14  COLUMN 41
-               VALUE  "mail :                                  ".
+               VALUE  "mail :                                 |".
            05  LINE 15  COLUMN 01
-               VALUE  "   CONTATO  :".
+               VALUE  "|  Contato  :".
+           05  LINE 15  COLUMN 41
+               VALUE  "                                       |".
            05  LINE 16  COLUMN 01
-               VALUE  "---------------------------------INFORMA".
+               VALUE  "|---------------------------------------".
            05  LINE 16  COLUMN 41
-               VALUE  "COES-------------------------------------".
+               VALUE  "---------------------------------------|".
            05  LINE 17  COLUMN 01
-               VALUE  "  MENSAGENS :".
+               VALUE  "| Notificacoes :".
+           05  LINE 17  COLUMN 41
+               VALUE  "                                       |".
+           05  LINE 18  COLUMN 01
+               VALUE  "|---------------------------------------".
+           05  LINE 18  COLUMN 41
+               VALUE  "---------------------------------------|".
+           05  LINE 19  COLUMN 01
+               VALUE  "|Inform".
+           05  LINE 19  COLUMN 41
+               VALUE  "acoes                                  |".
+           05  LINE 20  COLUMN 01
+               VALUE  "|".
+           05  LINE 20  COLUMN 41
+               VALUE  "                                       |".
+           05  LINE 21  COLUMN 01
+               VALUE  "|".
+           05  LINE 21  COLUMN 41
+               VALUE  "                                       |".
+           05  LINE 22  COLUMN 01
+               VALUE  "|".
+           05  LINE 22  COLUMN 41
+               VALUE  "                                       |".
+           05  LINE 23  COLUMN 01
+               VALUE  "|".
+           05  LINE 23  COLUMN 41
+               VALUE  "                                       |".
            05  LINE 24  COLUMN 01
-               VALUE  "----------------------------------------".
+               VALUE  "|---------------------------------------".
            05  LINE 24  COLUMN 41
-               VALUE  "----------------------------------------".
+               VALUE  "---------------------------------------|".
            05  TFOR-TIPOCLIENTE
                LINE 04  COLUMN 32  PIC X(01)
-               USING  FOR-TIPOFORNECEDOR.
+               USING  FOR-TIPOCLIENTE.
            05  TDTIPOCLIENTE
                LINE 04  COLUMN 34  PIC X(20)
-               USING  DCLI-TIPOCLIENTE.
+               USING  DFOR-TIPOCLIENTE.
            05  TFOR-CODIGO
                LINE 04  COLUMN 62  PIC 9(11)
                USING  FOR-CODIGO.
@@ -179,9 +218,9 @@
            05  TFOR-ESTADO
                LINE 12  COLUMN 53  PIC X(02)
                USING  CEP-UF.
-           05  TDFOR-ESTADO
+           05  TDCLI-ESTADO
                LINE 12  COLUMN 56  PIC X(15)
-               USING  DCLI-ESTADO.
+               USING  DFOR-ESTADO.
            05  TFOR-TELEFONE
                LINE 14  COLUMN 15  PIC 9(11)
                USING  FOR-TELEFONE.
@@ -191,200 +230,6 @@
            05  TFOR-CONTATO
                LINE 15  COLUMN 15  PIC X(32)
                USING  FOR-CONTATO.
-
-       01  TELAPESSOAFISICA.
-       05  LINE 01  COLUMN 01
-               VALUE  "|------------------------- Cadastro de F".
-           05  LINE 01  COLUMN 41
-               VALUE  "ORNCEDOR ----------------------------|".
-           05  LINE 02  COLUMN 01
-               VALUE  "|".
-           05  LINE 02  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 03  COLUMN 01
-               VALUE  "|------------------------------Dados Pes".
-           05  LINE 03  COLUMN 41
-               VALUE  "soais----------------------------------|".
-           05  LINE 04  COLUMN 01
-               VALUE  "|  Informe o Tipo de FORNCEDOR :  -".
-           05  LINE 04  COLUMN 41
-               VALUE  "              Codigo:                  |".
-           05  LINE 05  COLUMN 01
-               VALUE  "|  CPF                       :".
-           05  LINE 05  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 06  COLUMN 01
-               VALUE  "|  Nome                      :".
-           05  LINE 06  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 07  COLUMN 01
-               VALUE  "|  Apelido                   :".
-           05  LINE 07  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 08  COLUMN 01
-               VALUE  "|---------------------------------Endere".
-           05  LINE 08  COLUMN 41
-               VALUE  "co-------------------------------------|".
-           05  LINE 09  COLUMN 01
-               VALUE  "|  CEP    :                           Lo".
-           05  LINE 09  COLUMN 41
-               VALUE  "gradouro  :                            |".
-           05  LINE 10  COLUMN 01
-               VALUE  "|  Numero :                           Co".
-           05  LINE 10  COLUMN 41
-               VALUE  "mplemento :                            |".
-           05  LINE 11  COLUMN 01
-               VALUE  "|  Bairro :".
-           05  LINE 11  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 12  COLUMN 01
-               VALUE  "|  Cidade :                           Es".
-           05  LINE 12  COLUMN 41
-               VALUE  "tado      :   -                        |".
-           05  LINE 13  COLUMN 01
-               VALUE  "|---------------------------------Contat".
-           05  LINE 13  COLUMN 41
-               VALUE  "o--------------------------------------|".
-           05  LINE 14  COLUMN 01
-               VALUE  "|  Telefone :                         E-".
-           05  LINE 14  COLUMN 41
-               VALUE  "mail :                                 |".
-           05  LINE 15  COLUMN 01
-               VALUE  "|  Contato  :".
-           05  LINE 15  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 16  COLUMN 01
-               VALUE  "|---------------------------------------".
-           05  LINE 16  COLUMN 41
-               VALUE  "---------------------------------------|".
-           05  LINE 17  COLUMN 01
-               VALUE  "| Notificacoes :".
-           05  LINE 17  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 18  COLUMN 01
-               VALUE  "|---------------------------------------".
-           05  LINE 18  COLUMN 41
-               VALUE  "---------------------------------------|".
-           05  LINE 19  COLUMN 01
-               VALUE  "|                                 Inform".
-           05  LINE 19  COLUMN 41
-               VALUE  "acoes                                  |".
-           05  LINE 20  COLUMN 01
-               VALUE  "|".
-           05  LINE 20  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 21  COLUMN 01
-               VALUE  "|".
-           05  LINE 21  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 22  COLUMN 01
-               VALUE  "|".
-           05  LINE 22  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 23  COLUMN 01
-               VALUE  "|".
-           05  LINE 23  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 24  COLUMN 01
-               VALUE  "|---------------------------------------".
-           05  LINE 24  COLUMN 41
-               VALUE  "---------------------------------------|".
-
-
-
-       01  TELAJURIDICA.
-       05  LINE 01  COLUMN 01
-               VALUE  "                           CADASTRO DE F".
-           05  LINE 01  COLUMN 41
-               VALUE  "ORNECEDOR ".
-           05  LINE 03  COLUMN 01
-               VALUE  "|------------------------------Dados Pes".
-           05  LINE 03  COLUMN 41
-               VALUE  "soais----------------------------------|".
-           05  LINE 04  COLUMN 01
-               VALUE  "|  Informe o Tipo de FORNECEDOR :  -".
-           05  LINE 04  COLUMN 41
-               VALUE  "              Codigo:                  |".
-           05  LINE 05  COLUMN 01
-               VALUE  "|  CNPJ                      :".
-           05  LINE 05  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 06  COLUMN 01
-               VALUE  "|  Razao Social              :".
-           05  LINE 06  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 07  COLUMN 01
-               VALUE  "|  Apelido                   :".
-           05  LINE 07  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 08  COLUMN 01
-               VALUE  "|---------------------------------Endere".
-           05  LINE 08  COLUMN 41
-               VALUE  "co-------------------------------------|".
-           05  LINE 09  COLUMN 01
-               VALUE  "|  CEP    :                           Lo".
-           05  LINE 09  COLUMN 41
-               VALUE  "gradouro  :                            |".
-           05  LINE 10  COLUMN 01
-               VALUE  "|  Numero :                           Co".
-           05  LINE 10  COLUMN 41
-               VALUE  "mplemento :                            |".
-           05  LINE 11  COLUMN 01
-               VALUE  "|  Bairro :".
-           05  LINE 11  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 12  COLUMN 01
-               VALUE  "|  Cidade :                           Es".
-           05  LINE 12  COLUMN 41
-               VALUE  "tado      :   -                        |".
-           05  LINE 13  COLUMN 01
-               VALUE  "|---------------------------------Contat".
-           05  LINE 13  COLUMN 41
-               VALUE  "o--------------------------------------|".
-           05  LINE 14  COLUMN 01
-               VALUE  "|  Telefone :                         E-".
-           05  LINE 14  COLUMN 41
-               VALUE  "mail :                                 |".
-           05  LINE 15  COLUMN 01
-               VALUE  "|  Contato  :".
-           05  LINE 15  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 16  COLUMN 01
-               VALUE  "|---------------------------------------".
-           05  LINE 16  COLUMN 41
-               VALUE  "---------------------------------------|".
-           05  LINE 17  COLUMN 01
-               VALUE  "| MENSAGENS :".
-           05  LINE 17  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 18  COLUMN 01
-               VALUE  "|---------------------------------------".
-           05  LINE 18  COLUMN 41
-               VALUE  "---------------------------------------|".
-           05  LINE 19  COLUMN 01
-               VALUE  "|                                 Inform".
-           05  LINE 19  COLUMN 41
-               VALUE  "acoes                                  |".
-           05  LINE 20  COLUMN 01
-               VALUE  "|".
-           05  LINE 20  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 21  COLUMN 01
-               VALUE  "|".
-           05  LINE 21  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 22  COLUMN 01
-               VALUE  "|".
-           05  LINE 22  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 23  COLUMN 01
-               VALUE  "|".
-           05  LINE 23  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 24  COLUMN 01
-               VALUE  "|---------------------------------------".
-           05  LINE 24  COLUMN 41
-               VALUE  "---------------------------------------|".
 
 
 
@@ -413,34 +258,6 @@
                VALUE  "                                               ".
            05  LINE 24  COLUMN 41
                VALUE  "                                               ".
-         01  TELASEXO.
-           05  LINE 19  COLUMN 01
-               VALUE  " |                              LISTA DE".
-           05  LINE 19  COLUMN 41
-               VALUE  " SEXO                                  |".
-           05  LINE 20  COLUMN 01
-               VALUE  " |                               F - FEM".
-           05  LINE 20  COLUMN 41
-               VALUE  "ININO                                  |".
-           05  LINE 21  COLUMN 01
-               VALUE  " |                               M - MAS".
-           05  LINE 21  COLUMN 41
-               VALUE  "CULINO                                 |".
-           05  LINE 22  COLUMN 01
-               VALUE  " |                               N - NAO".
-           05  LINE 22  COLUMN 41
-               VALUE  " INFORMAR                              |".
-           05  LINE 23  COLUMN 01
-               VALUE  " |".
-           05  LINE 23  COLUMN 41
-               VALUE  "                                       |".
-           05  LINE 24  COLUMN 01
-               VALUE  " |--------------------------------------".
-           05  LINE 24  COLUMN 41
-               VALUE  "---------------------------------------|".
-
-
-
       *-----------------------------------------------------------------
        PROCEDURE DIVISION.
        INICIO.
@@ -462,7 +279,7 @@
                 PERFORM ROT-MENS THRU ROT-MENS-FIM
                 GO TO ROT-FIM
               ELSE
-                MOVE "ERRO NA ABERTURA DO ARQUIVO FORNECEDOR" TO MENS
+                MOVE "ERRO NA ABERTURA DO ARQUIVO CDAMIGOS" TO MENS
                 PERFORM ROT-MENS THRU ROT-MENS-FIM
                 GO TO ROT-FIM.
 
@@ -483,7 +300,7 @@
       *------------- INICIALIZACAO DAS VARIAVEIS------------
        R1.
            MOVE SPACES TO
-           DFOR-TIPOFORNECEDOR DFOR-ESTADO FOR-TIPOFORNECEDOR
+           DFOR-TIPOCLIENTE DFOR-ESTADO FOR-TIPOCLIENTE
            FOR-NOME FOR-APELIDO FOR-LOGRADOURO FOR-NUMERO
            FOR-COMPLEMENTO FOR-BAIRRO FOR-CIDADE FOR-ESTADO
            FOR-EMAIL FOR-CONTATO.
@@ -498,24 +315,24 @@
 
        R2.
 
-           ACCEPT TFOR-TIPOFORNECEDOR
+           ACCEPT TFOR-TIPOCLIENTE
            ACCEPT W-ACT FROM ESCAPE KEY
            IF W-ACT = 01
               GO TO R7.
        R2A.
-           IF FOR-TIPOFORNECEDOR = "f" OR "F"
-              MOVE "Pessoa Fisica" TO DFOR-TIPOFORNECEDOR
-              MOVE "F" TO FOR-TIPOFORNECEDOR
+           IF FOR-TIPOCLIENTE = "f" OR "F"
+              MOVE "Pessoa Fisica" TO DFOR-TIPOCLIENTE
+              MOVE "F" TO FOR-TIPOCLIENTE
            ELSE
-            IF FOR-TIPOFORNECEDOR = "J" OR "j"
-              MOVE "Pessoa Juridica" TO DFOR-TIPOFORNECEDOR
-              MOVE "J" TO FOR-TIPOFORNECEDOR
+            IF FOR-TIPOCLIENTE = "J" OR "j"
+              MOVE "Pessoa Juridica" TO DFOR-TIPOCLIENTE
+              MOVE "J" TO FOR-TIPOCLIENTE
 
              ELSE
               MOVE "F - Pessoa Fisica : J - Pessoa Juridica" TO MENS
                 PERFORM ROT-MENS THRU ROT-MENS-FIM
                 GO TO R2.
-           DISPLAY TDTIPOFORNECEDOR.
+           DISPLAY TDTIPOCLIENTE.
            DISPLAY TELALIMPAR.
            DISPLAY TELANOVA.
 
@@ -539,15 +356,15 @@
                 PERFORM R7A
 
                 DISPLAY TELANOVA
-                MOVE "*** FORNECEDOR JA CADASTRAD0 ***" TO MENS
+                MOVE "*** CLIENTE JA CADASTRAD0 ***" TO MENS
                 PERFORM ROT-MENS THRU ROT-MENS-FIM
                 GO TO ACE-001
              ELSE
-                MOVE "ERRO NA LEITURA ARQUIVO FORNECEDOR" TO MENS
+                MOVE "ERRO NA LEITURA ARQUIVO CADAMIGO" TO MENS
                 PERFORM ROT-MENS THRU ROT-MENS-FIM
                 GO TO ROT-FIM
            ELSE
-                MOVE "*** FORNECEDOR NAO CADASTRAD0 ***" TO MENS
+                MOVE "*** CLIENTE NAO CADASTRAD0 ***" TO MENS
                 PERFORM ROT-MENS THRU ROT-MENS-FIM.
 
        R4.
@@ -677,12 +494,12 @@
                       PERFORM ROT-MENS THRU ROT-MENS-FIM
                       GO TO R1.
                 IF ST-ERRO = "22"
-                  MOVE "* FORNECEDOR JA EXISTE,DADOS NAO GRAVADOS *" TO
+                  MOVE "* CLIENTE JA EXISTE,DADOS NAO GRAVADOS *" TO
                   MENS
                   PERFORM ROT-MENS THRU ROT-MENS-FIM
                   GO TO R1
                 ELSE
-                      MOVE "ERRO NA GRAVACAO DO ARQUIVO DE FORNECEDOR"
+                      MOVE "ERRO NA GRAVACAO DO ARQUIVO DE PRODUTO"
                                                        TO MENS
                       PERFORM ROT-MENS THRU ROT-MENS-FIM
                       GO TO ROT-FIM.
